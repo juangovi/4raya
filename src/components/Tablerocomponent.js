@@ -9,6 +9,7 @@ export const Tablerocomponent = () => {
     [null, null, null, null, null, null],
     [null, null, null, null, null, null],
     [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
   ]);
   const [tur, settur] = useState(true);
   return (
