@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React, {useReducer} from "react";
 import "../style/style.css";
 import { Columna } from "./Columna";
+import { tableroReducer } from "../reducers/tableroReducer";
 export const Tablerocomponent = () => {
-  const [casillas, setcasillas] = useState([
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-  ]);
-  const [tur, settur] = useState(true);
+  const init = () => {
+    return {tablero:[
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+      ],
+      turno:true,
+      win:false
+    }};
+  const [state, dispatch] = useReducer(tableroReducer, init());
   return (
-    <div className="tablero">
-      {casillas.map((columnas, index) => (
-        <Columna
-          columnas={columnas}
-          cas={{ casillas, setcasillas }}
-          index={index}
-          turno={{tur,settur}}
-          key={index}
-        />
-      ))}
+    <div>
+      <div className="tablero">
+        {state.tablero.map((columnas, index) => (
+          <Columna
+            columnas={columnas}
+            dispatch={dispatch}
+            index={index}
+            key={index}
+          />
+        ))}
+      </div>
+      <button onClick={() => dispatch({ type: "reset", payload: init() })}>
+        reset
+      </button>
+      {state.win ? <div>{state.turno ? "jugador 1 " : "jugador 2 "}has ganado</div>: null}
     </div>
   );
 };

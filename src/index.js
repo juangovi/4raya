@@ -1,13 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Tablerocomponent } from './components/Tablerocomponent';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Tablerocomponent } from "./components/Tablerocomponent";
 
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Tablerocomponent/>
-  </React.StrictMode>
-);
-
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Tablerocomponent />);
